@@ -343,7 +343,7 @@
         </div>
         <div class="form-group">
           <label class="form-label" for="adults">Número de personas:</label>
-          <input type="number" id="adults" min="1" value="1" required aria-label="Número de adultos" />
+          <input type="number" id="adults" min="1" value="1" required aria-label="Número de personas" />
         </div>
         <button type="submit" class="submit-btn">Enviar confirmación</button>
         <div class="loading-spinner" id="loadingSpinner"></div>
@@ -381,7 +381,6 @@
         document.getElementById("rsvpForm").style.display = "block";
         document.getElementById("rsvpForm").reset();
         document.getElementById("adults").value = 1;
-        document.getElementById("children").value = 0;
       }, 300);
     }
 
@@ -399,7 +398,6 @@
       e.preventDefault();
       const name = document.getElementById("name").value.trim();
       const adults = parseInt(document.getElementById("adults").value);
-      const children = parseInt(document.getElementById("children").value);
 
       if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s\-']+$/.test(name)) {
         return alert("Por favor ingresa un nombre válido.");
@@ -411,7 +409,6 @@
         .add({
           nombre: name,
           adultos: adults,
-          niños: children,
           fecha: new Date().toLocaleString("es-MX"),
           timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         })
@@ -430,12 +427,8 @@
   </script>
 
   <footer>
-    Versión 1.0.4
+    Versión 1.0.4 - Actualizado: <script>document.write(new Date().toLocaleDateString("es-MX", { year: 'numeric', month: 'long', day: 'numeric' }));</script>
   </footer>
-  <script>
-    const hoy = new Date();
-    const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
-    document.querySelector('footer').innerHTML += ` - Actualizado: ${hoy.toLocaleDateString("es-MX", opciones)}`;
-  </script>
 </body>
 </html>
+
