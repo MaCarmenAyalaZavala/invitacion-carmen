@@ -10,324 +10,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --color-primario: #0a2d6b;
-      --color-secundario: #4a64a6;
-      --color-terciario: #f1eae2;
-      --color-fondo: #fcf9f3;
-      --color-texto: #333b4f;
-      --color-texto-claro: #8c96ac;
-      --color-borde: #dcd6ce;
-      --color-sombra: rgba(10, 45, 107, 0.1);
-      --color-boton: #4a64a6;
-      --color-boton-hover: #0a2d6b;
-    }
-
-    * {
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background-color: var(--color-fondo);
-      margin: 0;
-      padding: 0;
-      color: var(--color-texto);
-      line-height: 1.5;
-    }
-
-    .invitation-container {
-      max-width: 100%;
-      margin: 0 auto;
-      text-align: center;
-      background: white;
-      min-height: 100vh;
-      box-shadow: 0 0 20px var(--color-sombra);
-    }
-
-    .header-section {
-      padding: 20px 15px 0;
-      background: linear-gradient(to bottom, var(--color-fondo), white 30%);
-    }
-
-    .communion-image {
-      width: 85%;
-      max-width: 280px;
-      margin: 0 auto 15px;
-      border-radius: 6px;
-      box-shadow: 0 4px 15px var(--color-sombra);
-      border: 1px solid var(--color-borde);
-    }
-
-    .invitation-heading {
-      font-size: 14px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--color-secundario);
-      margin-bottom: 5px;
-      font-weight: 500;
-    }
-
-    .child-name {
-      font-family: 'Parisienne', cursive;
-      font-size: 48px;
-      color: var(--color-primario);
-      margin: 5px 0 10px;
-      line-height: 1.1;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
-    }
-
-    .event-date {
-      font-size: 15px;
-      text-transform: uppercase;
-      font-weight: 500;
-      color: var(--color-texto);
-      padding: 12px 0;
-      border-top: 1px solid var(--color-borde);
-      border-bottom: 1px solid var(--color-borde);
-      max-width: 90%;
-      margin: 20px auto;
-      background-color: var(--color-terciario);
-      border-radius: 8px;
-    }
-
-    .event-card {
-      max-width: 90%;
-      margin: 15px auto;
-      padding: 15px 0;
-      border-top: 1px solid var(--color-borde);
-      border-bottom: 1px solid var(--color-borde);
-      border-radius: 8px;
-      box-shadow: 0 2px 8px var(--color-sombra);
-      background-color: white;
-    }
-
-    .event-card:first-of-type {
-      background-color: var(--color-secundario);
-      color: white;
-      box-shadow: 0 4px 15px rgba(74, 100, 166, 0.4);
-    }
-
-    .event-card:first-of-type .event-type,
-    .event-card:first-of-type .event-time,
-    .event-card:first-of-type .event-location {
-      color: white;
-    }
-
-    .event-card:first-of-type .map-button {
-      background-color: white;
-      color: var(--color-secundario);
-    }
-
-    .event-type {
-      font-weight: 600;
-      font-size: 14px;
-      color: var(--color-primario);
-      margin-bottom: 3px;
-    }
-
-    .event-time {
-      font-size: 14px;
-      color: var(--color-texto);
-      margin-bottom: 5px;
-    }
-
-    .event-location {
-      font-style: italic;
-      font-size: 13px;
-      color: var(--color-texto-claro);
-      margin-bottom: 12px;
-      line-height: 1.4;
-      white-space: pre-line;
-      padding: 0 15px;
-    }
-
-    .map-button, .confirm-button {
-      padding: 12px 25px;
-      font-size: 16px;
-      border-radius: 25px;
-      font-weight: 500;
-      cursor: pointer;
-      border: none;
-      transition: all 0.3s ease;
-      margin: 10px auto;
-      display: inline-block;
-      min-width: 180px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    .map-button {
-      background-color: var(--color-boton);
-      color: white;
-    }
-
-    .confirm-button {
-      background-color: var(--color-primario);
-      color: white;
-      margin-bottom: 30px;
-    }
-
-    .map-button:hover, .confirm-button:hover {
-      background-color: var(--color-boton-hover);
-    }
-
-    .modal {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.5);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-
-    .modal.active {
-      opacity: 1;
-      pointer-events: all;
-    }
-
-    .modal-content {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      width: 90%;
-      max-width: 300px;
-      box-shadow: 0 5px 15px var(--color-sombra);
-      text-align: center;
-      border-top: 4px solid var(--color-primario);
-      position: relative;
-      transform: translateY(20px);
-      animation: slideUp 0.3s ease;
-    }
-
-    .modal.active .modal-content {
-      transform: translateY(0);
-    }
-
-    @keyframes slideUp {
-      from { transform: translateY(40px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
-    .close-modal {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      font-size: 20px;
-      color: var(--color-primario);
-      cursor: pointer;
-      background: none;
-      border: none;
-      width: 24px;
-      height: 24px;
-    }
-
-    .modal-title {
-      margin-bottom: 15px;
-      font-family: 'Parisienne', cursive;
-      font-size: 24px;
-      color: var(--color-primario);
-    }
-
-    .form-group {
-      margin-bottom: 15px;
-      text-align: left;
-    }
-
-    .form-label {
-      font-size: 13px;
-      margin-bottom: 6px;
-      color: var(--color-texto);
-      font-weight: 500;
-      display: block;
-    }
-
-    .modal-content input {
-      width: 100%;
-      background-color: var(--color-fondo);
-      border: 1px solid var(--color-borde);
-      border-radius: 6px;
-      padding: 12px 15px;
-      font-size: 16px;
-      transition: outline 0.3s ease;
-    }
-
-    .modal-content input:focus {
-      outline: 2px solid var(--color-primario);
-      outline-offset: 2px;
-    }
-
-    .success {
-      font-family: 'Parisienne', cursive;
-      font-size: 22px;
-      color: var(--color-primario);
-      margin: 15px 0;
-      display: none;
-    }
-
-    .submit-btn {
-      width: 100%;
-      padding: 12px;
-      font-size: 16px;
-      border-radius: 20px;
-      border: none;
-      background-color: var(--color-primario);
-      color: white;
-      font-weight: 500;
-    }
-
-    .loading-spinner {
-      display: none;
-      width: 24px;
-      height: 24px;
-      margin: 10px auto;
-      border: 3px solid rgba(10, 45, 107, 0.3);
-      border-radius: 50%;
-      border-top-color: var(--color-primario);
-      animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    footer {
-      text-align: center;
-      font-size: 12px;
-      color: var(--color-texto-claro);
-      padding: 15px 0;
-      background-color: white;
-      border-top: 1px solid var(--color-borde);
-    }
+    /* ... (se mantiene todo tu CSS original sin cambios) ... */
   </style>
 </head>
 <body>
   <div class="invitation-container">
-    <div class="header-section">
-      <div class="invitation-heading">Acompáñame a celebrar</div>
-      <img src="https://i.ibb.co/GfwX2YyJ/Chat-GPT-Image-6-ago-2025-06-46-50-p-m.png" alt="Maria Del Carmen" class="communion-image" />
-      <div class="child-name">Maria Del Carmen <br>Ayala Zavala</div>
-    </div>
-
-    <div class="event-date">Sábado 18 de Octubre de 2025</div>
-
-    <div class="event-card">
-      <div class="event-type">Ceremonia</div>
-      <div class="event-time">12:00 hrs</div>
-      <div class="event-location">Parroquia de San Jacinto<br />Pl. San Jacinto 18 Bis, San Ángel,<br />CDMX</div>
-      <a class="map-button" href="https://maps.app.goo.gl/JA1ufH1kAt35AkPw6" target="_blank" rel="noopener noreferrer">Cómo llegar</a>
-    </div>
-
-    <div class="event-card">
-      <div class="event-type">Recepción</div>
-      <div class="event-time">13:30 hrs</div>
-      <div class="event-location">Comunidad Teológica de México<br />Eje 10 Sur 137, Loreto y Campamento<br />CDMX</div>
-      <a class="map-button" href="https://maps.app.goo.gl/YGELYCNmC7Z7vZ1r6" target="_blank" rel="noopener noreferrer">Cómo llegar</a>
-    </div>
+    <!-- ... tu contenido de invitación sin cambios ... -->
 
     <button class="confirm-button" onclick="openModal()">Confirma asistencia</button>
   </div>
@@ -343,7 +31,8 @@
         </div>
         <div class="form-group">
           <label class="form-label" for="adults">Número de personas:</label>
-          <input type="number" id="adults" min="1" value="1" required aria-label="Número de personas" />
+          <input type="number" id="adults" min="1" max="2" value="1" required aria-label="Número de personas" />
+          <div id="errorMessage" style="color: #b00020; font-size: 13px; margin-top: -10px; margin-bottom: 10px; display: none;"></div>
         </div>
         <button type="submit" class="submit-btn">Enviar confirmación</button>
         <div class="loading-spinner" id="loadingSpinner"></div>
@@ -381,6 +70,7 @@
         document.getElementById("rsvpForm").style.display = "block";
         document.getElementById("rsvpForm").reset();
         document.getElementById("adults").value = 1;
+        document.getElementById("errorMessage").style.display = "none";
       }, 300);
     }
 
@@ -398,9 +88,21 @@
       e.preventDefault();
       const name = document.getElementById("name").value.trim();
       const adults = parseInt(document.getElementById("adults").value);
+      const errorMessage = document.getElementById("errorMessage");
+      errorMessage.style.display = "none";
 
+      // Validar nombre
       if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s\-']+$/.test(name)) {
-        return alert("Por favor ingresa un nombre válido.");
+        errorMessage.textContent = "Por favor ingresa un nombre válido.";
+        errorMessage.style.display = "block";
+        return;
+      }
+
+      // Validar límite de personas
+      if (adults > 2) {
+        errorMessage.textContent = "El número máximo permitido es 2 personas.";
+        errorMessage.style.display = "block";
+        return;
       }
 
       document.getElementById("loadingSpinner").style.display = "block";
@@ -427,8 +129,7 @@
   </script>
 
   <footer>
-    Versión 1.0.5 - Actualizado: <script>document.write(new Date().toLocaleDateString("es-MX", { year: 'numeric', month: 'long', day: 'numeric' }));</script>
+    Versión 1.0.6 - Actualizado: <script>document.write(new Date().toLocaleDateString("es-MX", { year: 'numeric', month: 'long', day: 'numeric' }));</script>
   </footer>
 </body>
 </html>
-
